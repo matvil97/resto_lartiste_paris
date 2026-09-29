@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'Artiste — Montmartre depuis 1972</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,800;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#16302a; --green2:#1e3f37; --brass:#c9a45c; --brass2:#e2c888;
+    --cream:#f5eee1; --paper:#faf6ee; --ink:#1b1a17; --wine:#7d2230; --muted:#6f685c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.65;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .demo{background:var(--brass);color:var(--green);text-align:center;font-size:13px;font-weight:600;padding:8px 16px}
+
+  nav{position:absolute;left:0;right:0;z-index:10}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;color:var(--cream)}
+  .logo{font-family:"Playfair Display",serif;font-weight:800;font-size:26px;letter-spacing:.02em}
+  .logo small{display:block;font-family:Jost;font-weight:400;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--brass2)}
+  .links{display:flex;gap:30px;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+  .links a{opacity:.8}.links a:hover{opacity:1}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--brass);color:var(--green);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:15px 26px;border-radius:2px;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--brass2);transform:translateY(-2px)}
+  .btn.out{background:transparent;color:var(--cream);border:1px solid rgba(245,238,225,.4)}
+  .btn.out:hover{background:rgba(245,238,225,.08)}
+
+  /* hero */
+  .hero{background:var(--green);color:var(--cream);min-height:94vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+  .hero:before{content:"";position:absolute;inset:0;background:
+      radial-gradient(circle at 80% 30%,rgba(201,164,92,.22),transparent 45%),
+      repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 90px)}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+  .since{display:flex;align-items:center;gap:14px;color:var(--brass2);font-size:13px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:26px}
+  .since:before,.since:after{content:"";height:1px;width:40px;background:var(--brass)}
+  h1{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(50px,8vw,104px);line-height:.98;letter-spacing:-.01em}
+  h1 i{font-weight:500;color:var(--brass2)}
+  .lead{font-size:19px;font-weight:300;max-width:520px;margin:28px 0 38px;color:#d6cfbf}
+  .cta{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* arch frame */
+  .arch{aspect-ratio:3/4;border-radius:999px 999px 6px 6px;border:1px solid var(--brass);padding:14px;max-width:380px;margin-left:auto;width:100%}
+  .arch div{height:100%;border-radius:999px 999px 2px 2px;background:linear-gradient(180deg,#27493f,#0f231e);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;position:relative;overflow:hidden}
+  .arch div:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 110%,rgba(201,164,92,.35),transparent 55%)}
+  .arch .yr{font-family:"Playfair Display",serif;font-size:92px;font-weight:800;color:var(--brass2);line-height:1;position:relative}
+  .arch p{position:relative;font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:#cfc6b3;margin-top:10px}
+  .arch small{position:relative;margin-top:28px;font-size:12px;color:#9a917f}
+
+  .award{display:inline-flex;align-items:center;gap:10px;margin-top:44px;font-size:14px;color:#d6cfbf}
+  .award b{color:var(--brass2);font-weight:500}
+
+  section{padding:120px 0}
+  .kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--wine);margin-bottom:14px;font-weight:600}
+  h2{font-family:"Playfair Display",serif;font-weight:800;font-size:clamp(38px,5vw,62px);line-height:1.04;margin-bottom:22px}
+  h2 i{font-weight:500;color:var(--wine)}
+
+  /* story */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .story p{color:var(--muted);font-size:18px;font-weight:300;margin-bottom:16px}
+  .quote{font-family:"Playfair Display",serif;font-style:italic;font-size:30px;line-height:1.3;border-left:2px solid var(--brass);padding-left:28px;color:var(--green)}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e2d8c4;margin-top:40px;border:1px solid #e2d8c4}
+  .facts div{background:var(--paper);padding:22px}
+  .facts b{display:block;font-family:"Playfair Display",serif;font-size:30px;color:var(--green)}
+  .facts span{font-size:13px;color:var(--muted)}
+
+  /* menu */
+  .menu{background:var(--cream)}
+  .menu-head{text-align:center;max-width:620px;margin:0 auto 60px}
+  .menu-head p{color:var(--muted);font-weight:300;font-size:17px}
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .col{background:var(--paper);border:1px solid #e2d8c4;padding:38px 32px;position:relative}
+  .col:before{content:"";position:absolute;inset:8px;border:1px solid #efe6d4;pointer-events:none}
+  .col h3{font-family:"Playfair Display",serif;font-style:italic;font-weight:500;font-size:26px;text-align:center;color:var(--wine);margin-bottom:22px}
+  .col h3:after{content:"✦";display:block;font-style:normal;font-size:12px;color:var(--brass);margin-top:6px}
+  .it{padding:12px 0;border-bottom:1px dotted #d8ccb4}
+  .it:last-child{border:0}
+  .it h4{font-family:"Playfair Display",serif;font-weight:500;font-size:20px}
+  .it p{font-size:14px;color:var(--muted);font-weight:300}
+  .hint{text-align:center;margin-top:30px;font-size:13px;color:var(--muted);font-style:italic}
+
+  /* events */
+  .events{background:var(--wine);color:var(--cream);position:relative;overflow:hidden}
+  .events .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+  .events h2 i{color:var(--brass2)}
+  .events p{font-weight:300;font-size:18px;color:#ecd9d5}
+  .events .kicker{color:var(--brass2)}
+  .terrace{border:1px solid rgba(226,200,136,.5);padding:36px}
+  .terrace li{list-style:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12);display:flex;gap:14px;align-items:center;font-size:17px}
+  .terrace li:last-child{border:0}
+  .terrace span{color:var(--brass2);font-size:20px}
+
+  /* info */
+  .info{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .box{border-top:2px solid var(--green);padding-top:24px}
+  .box h3{font-family:"Playfair Display",serif;font-size:26px;margin-bottom:14px;color:var(--green)}
+  .box p,.row{color:var(--muted);font-size:16px}
+  .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dotted #d8ccb4}
+  .row b{color:var(--ink);font-weight:500}
+  .box a.l{display:inline-block;margin-top:14px;color:var(--wine);font-weight:600;border-bottom:1px solid var(--wine)}
+
+  footer{background:var(--green);color:#b8b09f;padding:40px 0;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer b{color:var(--brass2)}
+
+  .fab{position:fixed;right:16px;bottom:16px;z-index:30;display:none;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:880px){
+    .links,nav .btn{display:none}
+    .hero .wrap,.story,.events .wrap,.board,.info{grid-template-columns:1fr}
+    .arch{margin:10px auto 0;max-width:300px}
+    section{padding:84px 0}
+    .story{gap:40px}
+    .fab{display:inline-flex}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo">Maquette de démonstration réalisée par Codeo by M — proposition pour L'Artiste</div>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">L'Artiste<small>Montmartre · 1972</small></a>
+    <div class="links">
+      <a href="#maison">La maison</a>
+      <a href="#carte">La carte</a>
+      <a href="#evenements">Événements</a>
+      <a href="#infos">Infos</a>
+    </div>
+    <a class="btn" href="tel:+33142620626">Réserver</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="reveal in">
+      <div class="since">Restaurant familial</div>
+      <h1>La cuisine française<br><i>de la Butte.</i></h1>
+      <p class="lead">Depuis 1972, transmis de père en fils. Des plats traditionnels faits maison, une terrasse rue Gabrielle et un vrai décor de Paris d'autrefois, à deux pas de la place du Tertre.</p>
+      <div class="cta">
+        <a class="btn" href="tel:+33142620626">Réserver une table</a>
+        <a class="btn out" href="#carte">Découvrir la carte</a>
+      </div>
+      <div class="award">🏅 <span><b>Travellers' Choice 2025</b> — Tripadvisor</span></div>
+    </div>
+    <div class="arch reveal in"><div>
+      <span class="yr">1972</span>
+      <p>De père en fils</p>
+      <small>📷 Emplacement photo — votre salle ou votre terrasse</small>
+    </div></div>
+  </div>
+</header>
+
+<section id="maison">
+  <div class="wrap story">
+    <div class="reveal">
+      <div class="kicker">La maison</div>
+      <h2>Plus de 50 ans<br>au cœur de <i>Montmartre.</i></h2>
+      <p>L'Artiste, c'est une histoire de famille. Depuis 1972, la maison se transmet de père en fils, avec la même envie : servir une cuisine française généreuse, faite maison, à un prix juste.</p>
+      <p>On y vient pour un déjeuner en terrasse au soleil, un dîner au chaud quand il pleut sur la Butte, ou un verre avant de monter au Sacré-Cœur.</p>
+      <div class="facts">
+        <div><b>1972</b><span>Année d'ouverture</span></div>
+        <div><b>100%</b><span>Fait maison</span></div>
+        <div><b>7j/7</b><span>Midi et soir</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="quote">Un restaurant familial au cœur de la Butte, des plats traditionnels et des prix doux.</p>
+    </div>
+  </div>
+</section>
+
+<section id="carte" class="menu">
+  <div class="wrap">
+    <div class="menu-head reveal">
+      <div class="kicker">La carte</div>
+      <h2>Les classiques <i>français.</i></h2>
+      <p>Des recettes de toujours, préparées dans notre cuisine.</p>
+    </div>
+    <div class="board">
+      <div class="col reveal">
+        <h3>Plats mijotés</h3>
+        <div class="it"><h4>Cassoulet</h4><p>La recette traditionnelle, longuement mijotée</p></div>
+        <div class="it"><h4>Fondue</h4><p>À partager, comme à la montagne</p></div>
+      </div>
+      <div class="col reveal">
+        <h3>Viandes</h3>
+        <div class="it"><h4>Côtes d'agneau</h4><p>Grillées, garniture du jour</p></div>
+        <div class="it"><h4>Rumsteck</h4><p>Pièce de bœuf, sauce au choix</p></div>
+      </div>
+      <div class="col reveal">
+        <h3>Desserts maison</h3>
+        <div class="it"><h4>Tarte Tatin</h4><p>Faite maison, double crème</p></div>
+        <div class="it"><h4>Coupe glacée</h4><p>Boule de glace et chantilly maison</p></div>
+      </div>
+    </div>
+    <p class="hint reveal">Aperçu de la carte — votre menu complet et vos prix seront intégrés. Options végétariennes disponibles.</p>
+  </div>
+</section>
+
+<section id="evenements" class="events">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Terrasse & événements</div>
+      <h2>Fêtez vos moments<br><i>à Montmartre.</i></h2>
+      <p>Anniversaire, repas de famille, dîner entre amis : L'Artiste accueille vos événements privés. Contactez-nous, nous trouverons ensemble la bonne date.</p>
+      <a class="btn" style="margin-top:30px" href="mailto:restaurant.lartiste@outlook.fr">Organiser un événement</a>
+    </div>
+    <ul class="terrace reveal">
+      <li><span>☀</span> Terrasse côté rue</li>
+      <li><span>✦</span> Événements privés</li>
+      <li><span>♫</span> Décor vintage & musique rétro</li>
+      <li><span>🌿</span> Options végétariennes</li>
+    </ul>
+  </div>
+</section>
+
+<section id="infos">
+  <div class="wrap info">
+    <div class="box reveal">
+      <h3>Horaires</h3>
+      <div class="row"><span>Tous les jours</span><b>12h – 15h</b></div>
+      <div class="row"><span></span><b>18h – 23h30</b></div>
+    </div>
+    <div class="box reveal">
+      <h3>Adresse</h3>
+      <p>27 rue Gabrielle<br>75018 Paris · Montmartre<br>Métro Abbesses (ligne 12)</p>
+      <a class="l" target="_blank" href="https://www.google.com/maps/search/?api=1&query=L'Artiste%2027%20rue%20Gabrielle%20Paris">Itinéraire →</a>
+    </div>
+    <div class="box reveal">
+      <h3>Réservation</h3>
+      <p>01 42 62 06 26<br>restaurant.lartiste@outlook.fr</p>
+      <p style="margin-top:10px;font-size:14px">Espèces, Visa, Mastercard, sans contact</p>
+      <a class="l" href="tel:+33142620626">Appeler →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© L'Artiste · Montmartre depuis 1972</span>
+    <span>Site réalisé par <b>Codeo by M</b></span>
+  </div>
+</footer>
+
+<a class="btn fab" href="tel:+33142620626">📞 Réserver</a>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
